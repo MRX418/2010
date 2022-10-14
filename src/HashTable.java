@@ -33,7 +33,7 @@ public class HashTable<AnyType> implements BaseHashTable<AnyType>{
         array[currentPos] = new HashEntry<>(x, true);
 
         // Rehash; see Section 5.5
-         if (++currentSize > array.length / 2)
+         if (++currentSize > array.length)
            rehash();
     }
 
@@ -156,7 +156,7 @@ public class HashTable<AnyType> implements BaseHashTable<AnyType>{
      */
     @SuppressWarnings("unchecked")
     private void allocateArray(int arraySize) {
-        array = new HashEntry[arraySize];
+        array = new HashEntry[nextPrime(arraySize)];
     }
 
     /**

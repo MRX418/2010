@@ -15,21 +15,22 @@ public class DualDispersingTable<AnyType> extends HashTable<AnyType> {
                 !array[ currentPos ].element.equals( x ) )
         {
             col++;
-            currentPos+=offset*hashCalculator(x);
-            currentPos%= array.length;
+            currentPos =( myhash(x)+offset*hashCalculator(x))% array.length;
             offset+=1;
 
         }
         return currentPos;
     }
     private int previousPrime(){
-        for(int i = 1; i<array.length;++i )
+        for(int i = 1; i<array.length-1;++i )
             if(isPrime(array.length-i)) {
                 return array.length - i;
             }
         return array.length;
     }
     private int hashCalculator(AnyType x){
-        return previousPrime()-(x.hashCode()%previousPrime());
+        int R=previousPrime();
+        return R-(x.hashCode()%R);
+
     }
 }

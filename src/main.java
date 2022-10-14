@@ -232,7 +232,7 @@ public class main{
                 5.841580961705714E7};
 
         double temps1=System.nanoTime();
-        DualDispersingTable<Double> hash = new DualDispersingTable<>();
+        DualDispersingTable<Double> hash = new DualDispersingTable<>(150);
         for (int i = 0; i < Array3.length; ++i) {
             hash.insert(Array3[i]);
         }
